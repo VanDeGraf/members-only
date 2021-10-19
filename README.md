@@ -1,24 +1,22 @@
-# README
+## Members only
+This project is part of [The Odin Project Curriculum](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/members-only)  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description
+"_In this project, you’ll be building an exclusive clubhouse where your members can write anonymous posts. Inside the clubhouse, members can see who the author of a post is but, outside, they can only see the story and wonder who wrote it._"
 
-Things you may want to cover:
+### Requirements
+* gems:
+    * **rails** >= 6
+    * **devise** >= 4
+    * **simple_form**
+* npm packages:
+    * **bootstrap** >= 5
 
-* Ruby version
+### Installation
+* clone repo
+* `cd` into directory
+* run `bundle`
+* migrate database with run `rails db:migrate`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Running
+* `rails s` to start server
