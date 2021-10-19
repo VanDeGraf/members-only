@@ -1,18 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="container bg-light shadow-sm rounded p-3">
+  <h2 align="center">Forgot your password?</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-  </div>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+<!--    <div class="form-inputs">-->
+      <%#= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+<!--    </div>-->
 
-<%= render "devise/shared/links" %>
+    <div class="form-actions mt-3">
+      <div class="alert-warning">
+        Sorry, this function not implemented!
+      </div>
+      <%#= f.button :submit, "Send me reset password instructions", class: "btn btn-primary btn-disabled" %>
+    </div>
+  <% end %>
+</div>

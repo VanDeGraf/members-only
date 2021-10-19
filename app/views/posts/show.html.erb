@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="container bg-light shadow-sm rounded p-3">
+  <h2 align="center"><%= @post.title %></h2>
+  <% if user_signed_in? %>
+    <p><b>Author: <%= @post.user.name %></b></p>
+  <% end %>
+  <p>
+    <%= @post.body %>
+  </p>
+  <p>
+    <i>Created at:</i> <%= @post.created_at.localtime %>
+    <% if @post.updated_at != @post.created_at %>
+      <br>
+      <i>Updated at:</i> <%= @post.updated_at.localtime %>
+    <% end %>
+  </p>
+  <% if user_signed_in? && current_user.id == @post.user.id %>
+    <div class="btn-group" role="group">
+      <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-warning" %>
+      <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

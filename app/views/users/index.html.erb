@@ -1,25 +1,18 @@
-<p id="notice"><%= notice %></p>
+<h2 align="center">Users</h2>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-    </tr>
+<ul class="container list-group rounded">
+  <% User.all.each do |user| %>
+    <li class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= user.name %></h5>
+        <small>posts: <%= user.posts.count %></small>
+      </div>
+      <p>
+        <i>E-mail:</i> <%= user.email %><br>
+        <i>Registered:</i> <%= user.created_at.localtime %>
+      </p>
+    </li>
   <% end %>
-  </tbody>
-</table>
+</ul>
 
-<%= link_to 'Logout', destroy_user_session_path, class: 'btn btn-outline-danger', method: :delete %>
 

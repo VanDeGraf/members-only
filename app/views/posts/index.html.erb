@@ -1,39 +1,20 @@
-<p id="notice"><%= notice %></p>
+<h2 align="center">Posts</h2>
 
-<h1>Posts</h1>
-
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Body</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <% if user_signed_in? %>
-        <td><%= post.user.name %></td>
-      <% else %>
-        <td><i>hidden</i></td>
-      <% end %>
-      <td><%= post.body %></td>
-      <td><%= link_to 'Show', post %></td>
-      <% if user_signed_in? %>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tr>
+<ul class="container list-group rounded">
+  <% Post.all.each do |post| %>
+    <a class="list-group-item list-group-item-action" href="<%= post_path(post) %>">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= post.title %></h5>
+        <% if user_signed_in? %>
+          <small>author: <%= post.user.name %></small>
+        <% end %>
+      </div>
+      <p>
+        <%= post.body.first(200) %>
+        <% if post.body.length > 200 %>
+          ...
+        <% end %>
+      </p>
+    </a>
   <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'New Post', new_post_path %>
-<% end %>
-
+</ul>
