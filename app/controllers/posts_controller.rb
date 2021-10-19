@@ -18,6 +18,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if current_user.id != @post.user.id
+      flash[:notice] = "You can't change not own post!"
+      redirect_to root_path
+    end
   end
 
   # POST /posts or /posts.json
@@ -50,6 +54,11 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    if current_user.id != @post.user.id
+      flash[:notice] = "You can't delete not own post!"
+      redirect_to root_path
+      return
+    end
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
@@ -58,13 +67,14 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end
